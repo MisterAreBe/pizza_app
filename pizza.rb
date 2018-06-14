@@ -75,6 +75,7 @@ def make_pizza(cheeses, meats, vegetables, sauces, crusts, sizes)
     when 4; puts "#{sauces[3]} sauce"; price += 1
     when 5; puts "#{sauces[4]} sauce"; price -= 1
     end
-    puts "That'll be $#{price * 1.06}, after tax."
+    total = price * 1.06
+    puts "That'll be $#{total.round(2)}, after tax."
 end
 make_pizza(cheese, meat, vegetable, sauce, crust, size)
