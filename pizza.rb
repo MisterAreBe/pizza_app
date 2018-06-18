@@ -1,81 +1,75 @@
-def cheese()
-    cheeses = ["mozzarella", "colby", "chedder", "provolone", "no cheese"]
-    cheeses[0..4]
+def print_cheese()
+    ["mozzarella", "colby", "chedder", "provolone", "no cheese"]
 end
-def meat()
-    meats = ["pepperoni", "sausage", "ham", "bacon", "chicken", "no meat"]
-    meats[0..5]
+def print_meat()
+["pepperoni", "sausage", "ham", "bacon", "chicken", "no meat"]
 end
-def vegetable()
-    vegetables = ["mushrooms", "pineapple", "banana peppers", "onions", "olives", "no vegetables"]
-    vegetables[0..5]
+def print_vegetable()
+    ["mushrooms", "pineapple", "banana peppers", "onions", "olives", "no vegetable"]
 end
-def sauce()
-    sauces = ["marinara", "hummus", "barbecue", "garlic butter", "no sauce"]
-    sauces[0..4]
+def print_sauce()
+    ["marinara", "hummus", "barbecue", "garlic butter", "no sauce"]
 end
-def crust()
-    crusts = ["thin crust", "stuffed crust", "deep dish", "pan"]
-    crusts[0..3]
+def print_crust()
+    ["thin crust", "stuffed crust", "deep dish", "pan"]
 end
-def size()
-    sizes = ["8 inch", "16 inch", "24 inch", "32 inch", "40 inch"]
-    sizes[0..4]
+def print_size()
+    ["8 inch", "16 inch", "24 inch", "32 inch", "64 inch"]
 end
-def make_pizza(cheeses, meats, vegetables, sauces, crusts, sizes)
+def make_pizza()
     puts "How many pizzas would you like?"; print "> "; pizza_count = $stdin.gets.chomp.to_i
     price = 0
     while pizza_count > 0
-        puts "To select your choices, enter the corresponding number."
-        puts "What kind of cheese would you like on your pizza?"; print "#{cheese()} : "; cheese_type = $stdin.gets.chomp
-        puts "What kind of meat would you like on your pizza?"; print "#{meat()} : "; meat_type = $stdin.gets.chomp
-        puts "What kind of vegetables would you like on your pizza?"; print "#{vegetable()} : "; vegetable_type = $stdin.gets.chomp
-        puts "What kind of sauce would you like on your pizza?"; print "#{sauce()} : "; sauce_type = $stdin.gets.chomp
-        puts "What kind of crust would you like on your pizza?"; print "#{crust()} : "; crust_type = $stdin.gets.chomp
-        puts "What size pizza would you like?"; print "#{size()} : "; size_type = $stdin.gets.chomp
+        puts "To select your choices, enter the corresponding number. Example : 1, 2, 3, etc."
+        print "What size pizza would you like? : "; print "#{print_size()}\n8 inch = $5, 16 inch = $9, 24 inch = $12, 32 inch = $15, 64 inch = $20 : "; size_type = $stdin.gets.chomp
+        print "What kind of crust would you like on your pizza? : "; print "#{print_crust()}\nThin crust = $2.50, stuffed crust = $3, deep dish = $3.50, pan = $2 : "; crust_type = $stdin.gets.chomp
+        print "What kind of cheese would you like on your pizza? : "; print "#{print_cheese()}\nNo added price for mozzarella, + $0.10 for anything else : "; cheese_type = $stdin.gets.chomp
+        print "What kind of meat would you like on your pizza? : "; print "#{print_meat()}\nNo added price for pepperoni or sausage, ham = $0.25, bacon = $0.75, chicken = $0.50 : "; meat_type = $stdin.gets.chomp
+        print "What kind of vegetable would you like on your pizza? : "; print "#{print_vegetable()}\n+ $0.15 for any added vegtables : "; vegetable_type = $stdin.gets.chomp
+        print "What kind of sauce would you like on your pizza? : "; print "#{print_sauce()}\nNo added price for marinara, + $0.15 for any other sauce : "; sauce_type = $stdin.gets.chomp
         case crust_type.to_i
-        when 1; p_crust = crusts[0]; price += 7
-        when 2; p_crust = crusts[1]; price += 9
-        when 3; p_crust = crusts[2]; price += 10
-        when 4; p_crust = crusts[3]; price += 8
+        when 1; p_crust = print_crust[0]; price += 2.50
+        when 2; p_crust = print_crust[1]; price += 3
+        when 3; p_crust = print_crust[2]; price += 3.50
+        when 4; p_crust = print_crust[3]; price += 2
         end
         case size_type.to_i
-        when 1; p_size = sizes[0]; price += 5
-        when 2; p_size = sizes[1]; price += 8
-        when 3; p_size = sizes[2]; price += 12
-        when 4; p_size = sizes[3]; price += 15
-        when 5; p_size = sizes[4]; price += 20
+        when 1; p_size = print_size[0]; price += 5
+        when 2; p_size = print_size[1]; price += 9
+        when 3; p_size = print_size[2]; price += 12
+        when 4; p_size = print_size[3]; price += 15
+        when 5; p_size = print_size[4]; price += 20
         end
         puts "Your #{p_size}, #{p_crust} pizza will include the following items: "
         case cheese_type.to_i
-        when 1; puts "#{cheeses[0]} cheese"
-        when 2; puts "#{cheeses[1]} cheese"; price += 1
-        when 3; puts "#{cheeses[2]} cheese"; price += 1
-        when 4; puts "#{cheeses[3]} cheese"; price += 1
-        when 5; puts cheeses[4]; ; price -= 1
+        when 1; puts "#{print_cheese[0]} cheese"
+        when 2; puts "#{print_cheese[1]} cheese"; price += 0.10
+        when 3; puts "#{print_cheese[2]} cheese"; price += 0.10
+        when 4; puts "#{print_cheese[3]} cheese"; price += 0.10
+        when 5; puts print_cheese[4]; ; price -= 1
         end
         case meat_type.to_i
-        when 1; puts meats[0]
-        when 2; puts meats[1]
-        when 3; puts meats[2]; price += 1
-        when 4; puts meats[3]; price += 1.50
-        when 5; puts meats[4]; price += 2
-        when 6; puts meats[5]
+        when 1; puts print_meat[0]
+        when 2; puts print_meat[1]
+        when 3; puts print_meat[2]; price += 0.25
+        when 4; puts print_meat[3]; price += 0.75
+        when 5; puts print_meat[4]; price += 0.50
+        when 6; puts print_meat[5]
         end
         case vegetable_type.to_i
-        when 1; puts vegetables[0]; price += 0.50
-        when 2; puts vegetables[1]; price += 0.25
-        when 3; puts vegetables[2]; price += 0.15
-        when 4; puts vegetables[3]; price += 0.10
-        when 5; puts vegetables[4]; price += 0.30
-        when 6; puts vegetables[5]
+        when 1; puts print_vegetable[0]; price += 0.15
+        when 2; puts print_vegetable[1]; price += 0.15
+        when 3; puts print_vegetable[2]; price += 0.15
+        when 4; puts print_vegetable[3]; price += 0.15
+        when 5; puts print_vegetable[4]; price += 0.15
+        when 6; puts print_vegetable[5]
         end
         case sauce_type.to_i
-        when 1; puts "#{sauces[0]} sauce"
-        when 2; puts "#{sauces[1]} sauce"; price += 1
-        when 3; puts "#{sauces[2]} sauce"; price += 1
-        when 4; puts "#{sauces[3]} sauce"; price += 1
-        when 5; puts "#{sauces[4]} sauce"; price -= 1
+        when 1; puts "#{print_sauce[0]} sauce"
+        when 2; puts "#{print_sauce[1]} sauce"; price += 0.15
+        when 3; puts "#{print_sauce[2]} sauce"; price += 0.15
+        when 4; puts "#{print_sauce[3]} sauce"; price += 0.15
+        when 5; puts "#{print_sauce[4]} sauce"; price -= 1
         end
         pizza_count -= 1
     end
@@ -83,7 +77,7 @@ def make_pizza(cheeses, meats, vegetables, sauces, crusts, sizes)
     if (delivery == "y") || (delivery == "yes"); price += 10
     else; puts "Your order will be ready in 30 minutes."
     end
-    total = (price * 1.06) + (price * 0.15) # first is tax, second is tip.
+    total = (price * 1.06) # + (price * 0.15)  first is tax, second is tip.
     puts "That'll be $#{total.round(2)}, after tax."
 end
-make_pizza(cheese, meat, vegetable, sauce, crust, size)
+make_pizza()
